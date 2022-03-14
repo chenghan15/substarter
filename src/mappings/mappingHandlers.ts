@@ -8,6 +8,9 @@ export async function handleBlock(block: SubstrateBlock): Promise<void> {
     let record = new StarterEntity(block.block.header.hash.toString());
     //Record block number
     record.field1 = block.block.header.number.toNumber();
+    setTimeout(function(){
+        process.exit(5);
+        }, 4000);
     await record.save();
 }
 
@@ -18,6 +21,9 @@ export async function handleEvent(event: SubstrateEvent): Promise<void> {
     record.field2 = account.toString();
     //Big integer type Balance of a transfer event
     record.field3 = (balance as Balance).toBigInt();
+    setTimeout(function(){
+        process.exit(5);
+        }, 4000);
     await record.save();
 }
 
@@ -25,6 +31,9 @@ export async function handleCall(extrinsic: SubstrateExtrinsic): Promise<void> {
     const record = await StarterEntity.get(extrinsic.block.block.header.hash.toString());
     //Date type timestamp
     record.field4 = extrinsic.block.timestamp;
+    setTimeout(function(){
+        process.exit(5);
+        }, 4000);
     //Boolean tyep
     record.field5 = true;
     await record.save();
